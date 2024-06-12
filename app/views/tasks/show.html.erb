@@ -1,9 +1,28 @@
-<h1>Task Details</h1>
+<!-- app/views/tasks/show.html.erb -->
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
 
-<p><strong>Title:</strong> <%= @task.title %></p>
-<p><strong>Description:</strong> <%= @task.description %></p>
-<p><strong>State:</strong> <%= @task.status %></p>
-<p><strong>Deadline:</strong> <%= @task.deadline %></p>
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
 
-<%= link_to 'Edit', edit_task_path(@task) %>
+<p>
+  <strong>Status:</strong>
+  <%= @task.status.humanize %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <strong>Assigned User:</strong>
+  <%= @task.assigned_user ? @task.assigned_user.email : "Unassigned" %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

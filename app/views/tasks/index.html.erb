@@ -1,6 +1,5 @@
 
 <h2 class="text-4xl font-extrabold dark:text-white">Tasks List</h2>
-
 <%= link_to 'New Task', new_task_path %>
 
 <div>
@@ -15,7 +14,8 @@
             <th scope="col" class='px-6 py-3'>Description</th>
             <th scope="col" class='px-6 py-3'>Status</th> 
             <th scope="col" class='px-6 py-3'>Deadline</th> 
-            <th scope="col" class='px-6 py-3'>Actions</th> 
+            <th scope="col" class='px-6 py-3'>Assigned User</th> 
+            <th colspan="3" scope="col" class='px-6 py-3'>Actions</th> 
           </tr>
         </thead>
         <tbody>
@@ -27,7 +27,10 @@
               <td class='px-6 py-4'><%= task.description %></td>
               <td class='px-6 py-4'><%= task.status %></td>
               <td class='px-6 py-4'><%= task.deadline %></td>
+              
+              <td class='px-6 py-4'<%= task.assigned_user ? task.assigned_user.email : "Unassigned" %><</td>
               <td class='px-6 py-4'>
+                <%= link_to 'Show', task %>
                 <%= link_to 'Edit', edit_task_path(task) %>
                 <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>

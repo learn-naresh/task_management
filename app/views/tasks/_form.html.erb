@@ -1,10 +1,9 @@
-<%= form_with(model: task, local: true) do |form| %>
-  <% if task.errors.any? %>
+<%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
       <ul>
-        <% task.errors.full_messages.each do |message| %>
+        <% @task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -23,12 +22,17 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, ['backlog', 'in_progress', 'done'] %>
+    <%= form.select :status, Task.statuses.keys.map { |w| [w.humanize, w] } %>
   </div>
 
   <div class="field">
     <%= form.label :deadline %>
-    <%= form.datetime_local_field :deadline %>
+    <%= form.datetime_select :deadline %>
+  </div>
+
+  <div class="field">
+    <%= form.label :assigned_user_id, "Assign to" %>
+    <%= form.collection_select :assigned_user_id, @users, :id, :email, prompt: "Select a user" %>
   </div>
 
   <div class="actions">

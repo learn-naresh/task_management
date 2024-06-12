@@ -2,6 +2,9 @@
 class Task < ApplicationRecord
   belongs_to :user
 
+  belongs_to :assigned_user, class_name: 'User', optional: true
+
+
   validates :title, :status, :deadline, presence: true
 
   enum status: { backlog: 'backlog', in_progress: 'in_progress', done: 'done' }
