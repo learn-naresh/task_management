@@ -20,28 +20,7 @@
         />
       </button>
 
-      <div class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none z-20" id="user-dropdown" role="menu" aria-labelledby="user-menu-button">
-        <a href="/tasks/">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white"><%= current_user&.email%></span>
-            <span class="block text-sm text-gray-500 truncate dark:text-gray-400"><%= current_user&.email%></span>
-          </div>
-        </a>
-        <ul class="py-2" role="none">
-          <li>
-            <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" role="menuitem">Dashboard</a>
-          </li>
-          <li>
-            <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" role="menuitem">Settings</a>
-          </li>
-          <li>
-            <a href="/earnings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" role="menuitem">Earnings</a>
-          </li>
-          <li>
-            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" role="menuitem">Sign out</button>
-          </li>
-        </ul>
-      </div>
+      
       <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
