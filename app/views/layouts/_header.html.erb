@@ -15,7 +15,7 @@
         <span class="sr-only">Open user menu</span>
         <img
           class="w-8 h-8 rounded-full"
-          src=""
+          src="https://robisearch.com/wp-content/uploads/2021/05/Task-Logo-fullcol-Copy-561x480.png"
           alt="user"
         />
       </button>
@@ -23,8 +23,8 @@
       <div class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none z-20" id="user-dropdown" role="menu" aria-labelledby="user-menu-button">
         <a href={`/profile/${user?.uid}`}>
           <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white">Naresh</span>
-            <span class="block text-sm text-gray-500 truncate dark:text-gray-400">email</span>
+            <span class="block text-sm text-gray-900 dark:text-white"><%= current_user.email%></span>
+            <span class="block text-sm text-gray-500 truncate dark:text-gray-400"><%= current_user.email%></span>
           </div>
         </a>
         <ul class="py-2" role="none">
