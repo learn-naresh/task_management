@@ -5,6 +5,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.or(current_user.assigned_tasks)
+    @backlog_tasks = @tasks.where(status: 'backlog')
+    @in_progress_tasks = @tasks.where(status: 'in_progress')
+    @completed_tasks = @tasks.where(status: 'done')
   end
 
   def show
@@ -32,10 +35,9 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      render json: @task
     else
-      @users = User.all
-      render :edit
+      render json: { errors: @task.errors.full_messages}
     end
   end
 
