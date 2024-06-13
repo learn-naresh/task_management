@@ -4,43 +4,31 @@
 
 <div>
   <% if @tasks.empty? %>
-    <p>No tasks found for the specified filters.</p>
+    <p class="text-center text-gray-500">No tasks found for the specified filters.</p>
   <% else %>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
       <div id="kanban-board" class="flex justify-between">
-        <div class="kanban-column">
-          <h2>Backlog</h2>
+        <div class="kanban-column bg-gray-100 rounded-md p-4">
+          <h2 class="text-center text-lg font-semibold mb-2">Backlog</h2>
           <div id="backlog" class="kanban-list">
-            <% @backlog_tasks.each do |task| %>
-              <div class="task-card" data-task-id="<%= task.id %>">
-                <h3><%= task.title %></h3>
-                <p><%= task.description %></p>
-                <span class="status">Status: <%= task.status.capitalize %></span>
-              </div>
-            <% end %>
+          <% @backlog_tasks.each do |task| %>
+            <%= render 'task_card', task: task %>
+          <% end %>
           </div>
         </div>
-        <div class="kanban-column">
-          <h2>In Progress</h2>
+        <div class="kanban-column bg-gray-100 rounded-md p-4">
+          <h2 class="text-center text-lg font-semibold mb-2">In Progress</h2>
           <div id="in_progress" class="kanban-list">
             <% @in_progress_tasks.each do |task| %>
-              <div class="task-card" data-task-id="<%= task.id %>">
-                <h3><%= task.title %></h3>
-                <p><%= task.description %></p>
-                <span class="status">Status: <%= task.status.capitalize %></span>
-              </div>
+              <%= render 'task_card', task: task %>
             <% end %>
           </div>
         </div>
-        <div class="kanban-column">
-          <h2>Done</h2>
+        <div class="kanban-column bg-gray-100 rounded-md p-4">
+          <h2 class="text-center text-lg font-semibold mb-2">Done</h2>
           <div id="done" class="kanban-list">
             <% @completed_tasks.each do |task| %>
-              <div class="task-card" data-task-id="<%= task.id %>">
-                <h3><%= task.title %></h3>
-                <p><%= task.description %></p>
-                <span class="status">Status: <%= task.status.capitalize %></span>
-              </div>
+              <%= render 'task_card', task: task %>
             <% end %>
           </div>
         </div>
@@ -48,6 +36,7 @@
     </div>
   <% end %>
 </div>
+
 
 <script>
   const updateTaskCardStatus = (taskId, newStatus) => {
@@ -122,5 +111,4 @@
       console.error('Error:', error);
     }
   };
-
 </script>
