@@ -36,3 +36,16 @@
     </div>
   <% end %>
 </div>
+
+<!-- Modal -->
+<div id="taskModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+  <div class="flex items-center justify-center min-h-screen px-4">
+    <div class="relative w-full max-w-2xl p-4 bg-white rounded-lg shadow-lg">
+      <div class="flex justify-between items-center pb-4 border-b">
+        <h3 class="text-lg font-semibold" id="modalTitle"></h3>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-800">&times;</button>
+      </div>
+      <div id="modalContent" class="pt-4"></div>
+    </div>
+  </div>
+</div>

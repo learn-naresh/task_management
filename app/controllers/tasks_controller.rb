@@ -12,6 +12,9 @@ class TasksController < ApplicationController
 
   def show
     @users = User.all
+    respond_to do |format|
+      format.json { render json: @task }
+    end
   end
 
   def new

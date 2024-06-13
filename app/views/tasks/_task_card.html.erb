@@ -1,4 +1,4 @@
-<div class="task-card border p-4 rounded-md mb-2 shadow-md bg-white hover:shadow-lg transition duration-300 transform hover:-translate-y-1 cursor-pointer" data-task-id="<%= task.id %>">
+<div class="task-card border p-4 rounded-md mb-2 shadow-md bg-white hover:shadow-lg transition duration-300 transform hover:-translate-y-1 cursor-pointer" data-task-id="<%= task.id %>" onclick="showTaskModal(<%= task.id %>)">
   <h3 class="text-lg font-medium mb-2"><%= task.title %></h3>
   <p class="text-gray-600 mb-2"><%= task.description %></p>
   <span class="status text-gray-500">Status: <%= task.status.capitalize %></span>
