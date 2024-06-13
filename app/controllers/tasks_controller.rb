@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     @users = User.all
     respond_to do |format|
       format.json { render json: @task }
+      format.html
     end
   end
 
