@@ -9,7 +9,7 @@ class Task < ApplicationRecord
 
   enum status: { backlog: 'backlog', in_progress: 'in_progress', done: 'done' }
 
-  # after_create :schedule_reminders
+  after_create :schedule_reminders
 
   private
 

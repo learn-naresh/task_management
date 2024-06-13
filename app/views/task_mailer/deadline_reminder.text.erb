@@ -1,0 +1,10 @@
+Task Deadline Reminder
+
+Dear <%= @task.user.email %>,
+
+This is a reminder that this task "<%= @task.title %>" is due on <%= @task.deadline.strftime("%Y-%m-%d %H:%M") %>.
+
+It is not done yet by assignee
+
+Regards,
+Notifications Team
