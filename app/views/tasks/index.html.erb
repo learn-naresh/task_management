@@ -7,21 +7,28 @@
     <p>No tasks found for the specified filters.</p>
   <% else %>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-        <div id="kanban-board" class="flex justify-between">
+      <div id="kanban-board" class="flex justify-between">
         <div class="kanban-column">
           <h2>Backlog</h2>
           <div id="backlog" class="kanban-list">
             <% @backlog_tasks.each do |task| %>
-              <%= render 'task_card', task: task %>
+              <div class="task-card" data-task-id="<%= task.id %>">
+                <h3><%= task.title %></h3>
+                <p><%= task.description %></p>
+                <span class="status">Status: <%= task.status.capitalize %></span>
+              </div>
             <% end %>
           </div>
         </div>
         <div class="kanban-column">
           <h2>In Progress</h2>
-          <div id="in-progress" class="kanban-list">
+          <div id="in_progress" class="kanban-list">
             <% @in_progress_tasks.each do |task| %>
-              <%= render 'task_card', task: task %>
+              <div class="task-card" data-task-id="<%= task.id %>">
+                <h3><%= task.title %></h3>
+                <p><%= task.description %></p>
+                <span class="status">Status: <%= task.status.capitalize %></span>
+              </div>
             <% end %>
           </div>
         </div>
@@ -29,60 +36,91 @@
           <h2>Done</h2>
           <div id="done" class="kanban-list">
             <% @completed_tasks.each do |task| %>
-              <%= render 'task_card', task: task %>
+              <div class="task-card" data-task-id="<%= task.id %>">
+                <h3><%= task.title %></h3>
+                <p><%= task.description %></p>
+                <span class="status">Status: <%= task.status.capitalize %></span>
+              </div>
             <% end %>
           </div>
         </div>
       </div>
-      </table>
     </div>
   <% end %>
 </div>
 
 <script>
+  const updateTaskCardStatus = (taskId, newStatus) => {
+    const taskCard = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
+    if (taskCard) {
+      const statusElement = taskCard.querySelector('.status');
+      if (statusElement) {
+        statusElement.textContent = `Status: ${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}`;
+      }
+    }
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
-    const backlog = document.getElementById('backlog');
-    const inProgress = document.getElementById('in-progress');
-    const done = document.getElementById('done');
+    const columns = ['backlog', 'in_progress', 'done'];
 
-    new Sortable(backlog, {
-      group: 'kanban',
-      animation: 150,
-      onEnd: (evt) => {
-        handleTaskMovement(evt.item, 'backlog');
-      },
+    columns.forEach((column) => {
+      const element = document.getElementById(column);
+
+      new Sortable(element, {
+        group: 'kanban',
+        animation: 150,
+        onEnd: (evt) => {
+          const targetColumnId = evt.to.id;
+          if (targetColumnId === column) {
+            // Do nothing if dragged to the same column
+            return;
+          }
+
+          let newStatus;
+          switch (column) {
+            case 'backlog':
+              newStatus = targetColumnId === 'in_progress' ? 'in_progress' : 'done';
+              break;
+            case 'in_progress':
+              newStatus = targetColumnId === 'done' ? 'done' : 'backlog';
+              break;
+            case 'done':
+              newStatus = targetColumnId === 'in_progress' ? 'in_progress' : 'backlog';
+              break;
+            default:
+              newStatus = '';
+              break;
+          }
+          handleTaskMovement(evt.item, newStatus);
+        },
+      });
     });
+  });
 
-    new Sortable(inProgress, {
-      group: 'kanban',
-      animation: 150,
-      onEnd: (evt) => {
-        handleTaskMovement(evt.item, 'in-progress');
-      },
-    });
-
-    new Sortable(done, {
-      group: 'kanban',
-      animation: 150,
-      onEnd: (evt) => {
-        handleTaskMovement(evt.item, 'done');
-      },
-    });
-
-    const handleTaskMovement = async (item, status) => {
-      const taskId = item.dataset.taskId;
-      await fetch(`/tasks/${taskId}`, {
+  const handleTaskMovement = async (item, newStatus) => {
+    const taskId = item.dataset.taskId;
+    console.log(`Moving task ${taskId} to ${newStatus}`);
+    try {
+      const response = await fetch(`/tasks/${taskId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
-
         },
-        body: JSON.stringify({ task: { status: status } }),
-      })
-        .then(response => response.json())
-        .then(data => console.log(data)) // Update UI or handle response as needed
-        .catch(error => console.error('Error:', error));
+        body: JSON.stringify({ task: { status: newStatus } }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      updateTaskCardStatus(taskId, newStatus);
+
+    } catch (error) {
+      console.error('Error:', error);
     }
-  });
+  };
+
 </script>
