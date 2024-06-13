@@ -7,26 +7,26 @@
     <p class="text-center text-gray-500">No tasks found for the specified filters.</p>
   <% else %>
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
-      <div id="kanban-board" class="flex justify-between">
-        <div class="kanban-column bg-gray-100 rounded-md p-4">
+      <div id="kanban-board" class="flex justify-between space-x-4">
+        <div class="kanban-column flex-1 bg-gray-100 rounded-md p-4">
           <h2 class="text-center text-lg font-semibold mb-2">Backlog</h2>
-          <div id="backlog" class="kanban-list">
-          <% @backlog_tasks.each do |task| %>
-            <%= render 'task_card', task: task %>
-          <% end %>
+          <div id="backlog" class="kanban-list min-h-[200px] space-y-2">
+            <% @backlog_tasks.each do |task| %>
+              <%= render 'task_card', task: task %>
+            <% end %>
           </div>
         </div>
-        <div class="kanban-column bg-gray-100 rounded-md p-4">
+        <div class="kanban-column flex-1 bg-gray-100 rounded-md p-4">
           <h2 class="text-center text-lg font-semibold mb-2">In Progress</h2>
-          <div id="in_progress" class="kanban-list">
+          <div id="in_progress" class="kanban-list min-h-[200px] space-y-2">
             <% @in_progress_tasks.each do |task| %>
               <%= render 'task_card', task: task %>
             <% end %>
           </div>
         </div>
-        <div class="kanban-column bg-gray-100 rounded-md p-4">
+        <div class="kanban-column flex-1 bg-gray-100 rounded-md p-4">
           <h2 class="text-center text-lg font-semibold mb-2">Done</h2>
-          <div id="done" class="kanban-list">
+          <div id="done" class="kanban-list min-h-[200px] space-y-2">
             <% @completed_tasks.each do |task| %>
               <%= render 'task_card', task: task %>
             <% end %>
