@@ -35,7 +35,12 @@ gem 'sidekiq'
 
 gem 'redis'
 
-gem 'dotenv'
+gem 'google-apis-calendar_v3'
+
+gem 'dotenv', groups: [:development, :test]
+
+gem 'omniauth-google-oauth2'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

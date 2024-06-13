@@ -1,0 +1,8 @@
+<h1>Events for <%= @event_list.summary %></h1>
+<ul>
+  <% @event_list.items.each do |event| %>
+    <li>
+      <%= event.summary %>
+    </li>
+  <% end %>
+</ul>

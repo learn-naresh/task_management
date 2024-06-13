@@ -65,6 +65,8 @@ Start the Server Using This:
 
 ```
 ./bin/dev
+or
+rails s
 ```
 
 Run Redis Server:
