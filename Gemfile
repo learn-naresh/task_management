@@ -35,6 +35,8 @@ gem 'sidekiq'
 
 gem 'redis'
 
+gem 'redis-rails'
+
 gem 'google-apis-calendar_v3'
 
 gem 'dotenv', groups: [:development, :test]

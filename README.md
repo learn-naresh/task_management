@@ -1,6 +1,11 @@
+## Live Demo
+
+You can access the live demo of the application [here](https://task-management-yclf.onrender.com/).
+
+
 # Task Management Application
 
-![Task Management Application](./demo-screenshot.png)
+![Task Management Application](https://github.com/learn-naresh/task_management/blob/main/screenshots/Screenshot%202024-06-14%20104637%20Login.png?raw=true)
 
 This is a robust task management application built with Ruby on Rails and PostgreSQL, designed to streamline task organization and enhance team productivity.
 
@@ -118,6 +123,34 @@ rails server -e production
   - **Commit your changes (git commit -m 'Add new feature').**
   - **Push to the branch (git push origin feature-branch).**
   - **Open a pull request.**
+
+## Screenshots
+
+Here are some screenshots of the application:
+
+### Registration Page
+![Registration Page](screenshots/Screenshot%202024-06-14%20104611%20Register.png)
+
+### Login Page
+![Login Page](screenshots/Screenshot%202024-06-14%20104637%20Login.png)
+
+### Forgot Password
+![Forgot Password](screenshots/ForgotPassword.png)
+
+### Dashboard After Login
+![Dashboard After Login](screenshots/Screenshot%202024-06-14%20104810%20After%20Login.png)
+
+### Creating a New Task
+![Creating a New Task](screenshots/Screenshot%202024-06-14%20104833%20New%20Task.png)
+
+### Task Details
+![Task Details](screenshots/TaskDetails.png)
+
+### Task Modal Popup
+![Task Modal Popup](screenshots/Screenshot%202024-06-14%20105033%20Task%20Modal%20pop%20up.png)
+
+### Calendar Integration
+![Calendar Integration](screenshots/Screenshot%202024-06-14%20105559%20Calendar%20API.png)
   
 
 ## License
